@@ -73,13 +73,18 @@ function QuizProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
+  console.log(questions);
   const maxPoints = questions.reduce((prev, cur) => prev + cur.points, 0);
 
   useEffect(
     function () {
-      fetch("http://localhost:8000/questions")
+      // fetch("http://localhost:8000/questions")
+      fetch("/questions.json")
         .then((res) => res.json())
-        .then((data) => dispatch({ type: "dataReceived", payload: data }))
+        .then((data) =>
+          dispatch({ type: "dataReceived", payload: data.questions })
+        )
+
         .catch((err) => dispatch({ type: "dataFailed" }));
     },
     [dispatch]
