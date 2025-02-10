@@ -73,7 +73,7 @@ function QuizProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
-  console.log(questions);
+  console.log(numQuestions);
   const maxPoints = questions.reduce((prev, cur) => prev + cur.points, 0);
 
   useEffect(
